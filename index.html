@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial No Root Game Assistant</title>
+    <!-- Import Font dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Import Ikon dari FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Reset & Variabel Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #080A10;
+            /* Warna background gelap utama */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container Utama Web */
+        .main-container {
+            background-color: #11151E;
+            /* Background kotak utama */
+            border: 1px solid #1F2532;
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Header / Judul */
+        .header-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-title .pipe {
+            color: #3b82f6;
+            /* Garis biru */
+        }
+
+        /* Bagian Video Player */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #1F2532;
+            background-color: #000;
+            cursor: pointer;
+        }
+
+        .video-container img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            opacity: 0.88;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .video-container:hover img {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0ea5e9;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+            transition: transform 0.2s;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button i {
+            color: white;
+            font-size: 24px;
+            margin-left: 5px;
+        }
+
+        /* Grup Tombol Unduhan */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            /* Agar bisa turun ke bawah di layar HP */
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn i {
+            font-size: 16px;
+        }
+
+        .btn-blue {
+            background: linear-gradient(90deg, #0ea5e9, #0284c7);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-purple {
+            background: linear-gradient(90deg, #8b5cf6, #6d28d9);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Kotak Persyaratan Sistem */
+        .requirements-box {
+            background-color: #0C1017;
+            border: 1px solid #1F2532;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .req-title {
+            color: #38bdf8;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .req-subtitle {
+            color: #9ca3af;
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .req-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .req-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        .req-list li i {
+            color: #38bdf8;
+            font-size: 16px;
+            margin-top: 3px;
+        }
+
+        .req-list strong {
+            color: #ffffff;
+        }
+
+        /* Mode Mobile / HP */
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .header-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <!-- Bagian Judul -->
+        <div class="header-title">
+            <span class="pipe">|</span> TUTORIAL PEMASANGAN PAKS
+        </div>
+
+        <!-- Bagian Video -->
+        <div class="video-container" id="videoContainer" role="button" tabindex="0"
+            aria-label="Putar Video Tutorial Pemasangan Paks">
+            <img src="https://i.ytimg.com/vi/79JOBEZuPAU/hqdefault.jpg" alt="Tutorial Pemasangan Paks">
+            <div class="play-button" id="playBtn">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
+
+        <!-- Bagian Tombol Unduh -->
+        <div class="button-group">
+            <a href="https://www.mediafire.com/file/7noc909tomljsmg/game_patch_4.6.0.21542.pak/file" target="_blank"
+                rel="noopener noreferrer" class="btn btn-blue">
+                <i class="fas fa-download"></i> UNDUH FILE PAKS VIP 4.6
+            </a>
+            <a href="https://share.google/dOMvig8voIYE1ESc1" target="_blank" rel="noopener noreferrer"
+                class="btn btn-purple">
+                <i class="fas fa-download"></i> UNDUH APK SIZUKU
+            </a>
+            <a href="https://t.me/+zqrSQKEDKmdhNGE1" target="_blank" rel="noopener noreferrer" class="btn btn-purple">
+                <i class="fas fa-download"></i> GRUB VIP
+            </a>
+        </div>
+
+        <!-- Bagian Persyaratan Sistem -->
+        <div class="requirements-box">
+            <h3 class="req-title">PERSYARATAN WAJIB SISTEM</h3>
+
+            <ul class="req-list">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>GUNAKAN <strong>WIFI UNTUK MENGAKSES SIZUKU / ZARCIVER</strong></span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>JIKA KURANG FAHAM ( GAPTEK KEBANGETAN) DM TELEGRAM @TRCBANGKIT
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>HUBUNGI @TRCBANGKIT DI TELEGRAM SETELAH PEMASANGAN, NANTI SAYA MASUKAN KE GRUB VIP</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong> ATAU LANGSUNG MASUK SENDIRI KE GRUB VIP MALAH LEBIH BAGUS
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const videoContainer = document.getElementById('videoContainer');
+        function playVideo() {
+            if (!videoContainer || videoContainer.dataset.playing) return;
+            videoContainer.dataset.playing = "true";
+            videoContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/79JOBEZuPAU?autoplay=1&rel=0" title="Tutorial Pemasangan Paks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+            videoContainer.style.cursor = 'default';
+        }
+        if (videoContainer) {
+            videoContainer.addEventListener('click', playVideo);
+            videoContainer.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    playVideo();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
