@@ -160,9 +160,112 @@
             box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
         }
 
+        .btn-red {
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.35);
+        }
+
         .btn:hover {
             transform: translateY(-2px);
             filter: brightness(1.1);
+        }
+
+        .yt-float-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            z-index: 2;
+            transition: all 0.2s ease;
+        }
+
+        .yt-float-badge i {
+            color: #ef4444;
+            font-size: 15px;
+        }
+
+        .yt-float-badge:hover {
+            background: #ef4444;
+            color: #ffffff;
+            border-color: #ef4444;
+            transform: scale(1.05);
+        }
+
+        .yt-float-badge:hover i {
+            color: #ffffff;
+        }
+
+        .video-helper-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #11151E;
+            border: 1px solid #1F2532;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin-top: -18px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            gap: 12px;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .video-helper-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #9ca3af;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .video-helper-info i.text-red {
+            color: #ef4444;
+            font-size: 20px;
+        }
+
+        .video-helper-info strong {
+            color: #ffffff;
+        }
+
+        .btn-yt-small {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            padding: 7px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-yt-small:hover {
+            background: #ef4444;
+            color: #ffffff;
+            border-color: #ef4444;
+            transform: translateY(-1px);
+        }
+
+        .video-helper-bar.highlight-offline {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.4);
         }
 
         /* Kotak Persyaratan Sistem */
@@ -683,10 +786,24 @@
         <!-- Bagian Video -->
         <div class="video-container" id="videoContainer" role="button" tabindex="0"
             aria-label="Putar Video Tutorial Pemasangan Paks">
-            <img src="https://i.ytimg.com/vi/79JOBEZuPAU/hqdefault.jpg" alt="Tutorial Pemasangan Paks">
+            <img src="https://i.ytimg.com/vi/9ZSS9KQTR7s/hqdefault.jpg" alt="Tutorial Pemasangan Paks">
             <div class="play-button" id="playBtn">
                 <i class="fas fa-play"></i>
             </div>
+            <a href="https://youtu.be/9ZSS9KQTR7s" target="_blank" rel="noopener noreferrer" class="yt-float-badge" onclick="event.stopPropagation();" title="Buka langsung di YouTube">
+                <i class="fab fa-youtube"></i> Tonton di YouTube
+            </a>
+        </div>
+
+        <!-- Bar Kontrol / Info YouTube -->
+        <div class="video-helper-bar" id="videoHelperBar">
+            <div class="video-helper-info">
+                <i class="fab fa-youtube text-red"></i>
+                <span id="videoHelperText">Video Tutorial Resmi: <strong>PEMASANGAN PAKS (SKIP = BANNED)</strong></span>
+            </div>
+            <a href="https://youtu.be/9ZSS9KQTR7s" target="_blank" rel="noopener noreferrer" class="btn-yt-small" id="btnYtSmall">
+                <i class="fas fa-external-link-alt"></i> Buka di YouTube
+            </a>
         </div>
 
         <!-- Bagian Tombol Unduh -->
@@ -698,13 +815,16 @@
             <a href="https://www.mediafire.com/file/8sod1vnrq9yop8j/V3_LITE_%2540TRCBANGKIT.zip/file" target="_blank"
                 rel="noopener noreferrer" class="btn btn-blue">
                 <i class="fas fa-download"></i> UNDUH FILE PAKS lite ( lebih ringan & safe)
-             </a>
+            </a>
             <a href="https://share.google/dOMvig8voIYE1ESc1" target="_blank" rel="noopener noreferrer"
                 class="btn btn-purple">
                 <i class="fas fa-download"></i> UNDUH APK SIZUKU
             </a>
             <a href="https://t.me/+zqrSQKEDKmdhNGE1" target="_blank" rel="noopener noreferrer" class="btn btn-purple">
                 <i class="fas fa-download"></i> GRUB VIP
+            </a>
+            <a href="https://youtu.be/9ZSS9KQTR7s" target="_blank" rel="noopener noreferrer" class="btn btn-red">
+                <i class="fab fa-youtube"></i> TONTON DI YOUTUBE
             </a>
         </div>
 
@@ -718,7 +838,8 @@
                     <span class="pipe">|</span> SETINGAN MAS BANGKIT
                 </h2>
                 <p class="settings-subtitle">
-                    Gunakan panduan konfigurasi menu di bawah ini untuk pengaturan terbaik, stabil, dan aman (Play Safe). Klik pada gambar untuk memperbesar resolusi penuh.
+                    Gunakan panduan konfigurasi menu di bawah ini untuk pengaturan terbaik, stabil, dan aman (Play
+                    Safe). Klik pada gambar untuk memperbesar resolusi penuh.
                 </p>
             </div>
 
@@ -820,8 +941,10 @@
                         </button>
                     </div>
                     <div class="setting-img-container" id="aimbotImgContainer" onclick="openCurrentAimbotLightbox()">
-                        <span class="setting-badge-tag" id="aimbotTagBadge"><i class="fas fa-bullseye"></i> AIMBOT 1/2</span>
-                        <img src="images/setingan-aimbot-1.jpg" id="aimbotCardImg" alt="Setingan Mas Bangkit - Aimbot" loading="lazy">
+                        <span class="setting-badge-tag" id="aimbotTagBadge"><i class="fas fa-bullseye"></i> AIMBOT
+                            1/2</span>
+                        <img src="images/setingan-aimbot-1.jpg" id="aimbotCardImg" alt="Setingan Mas Bangkit - Aimbot"
+                            loading="lazy">
                         <div class="zoom-overlay">
                             <i class="fas fa-search-plus"></i>
                             <span>Klik untuk perbesar</span>
@@ -919,10 +1042,13 @@
     <!-- Modal Lightbox Preview Gambar -->
     <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Pratinjau Setingan">
         <div class="lightbox-wrapper">
-            <button type="button" class="lightbox-close-btn" id="lightboxClose" aria-label="Tutup"><i class="fas fa-times"></i></button>
-            <button type="button" class="lightbox-arrow prev" id="lightboxPrev" aria-label="Foto Sebelumnya"><i class="fas fa-chevron-left"></i></button>
-            <button type="button" class="lightbox-arrow next" id="lightboxNext" aria-label="Foto Selanjutnya"><i class="fas fa-chevron-right"></i></button>
-            
+            <button type="button" class="lightbox-close-btn" id="lightboxClose" aria-label="Tutup"><i
+                    class="fas fa-times"></i></button>
+            <button type="button" class="lightbox-arrow prev" id="lightboxPrev" aria-label="Foto Sebelumnya"><i
+                    class="fas fa-chevron-left"></i></button>
+            <button type="button" class="lightbox-arrow next" id="lightboxNext" aria-label="Foto Selanjutnya"><i
+                    class="fas fa-chevron-right"></i></button>
+
             <div class="lightbox-img-box">
                 <img src="" id="lightboxImg" alt="Pratinjau Setingan Mas Bangkit">
             </div>
@@ -943,8 +1069,20 @@
         function playVideo() {
             if (!videoContainer || videoContainer.dataset.playing) return;
             videoContainer.dataset.playing = "true";
-            videoContainer.innerHTML = '<iframe src="https://youtu.be/9ZSS9KQTR7s?si=6p7rJ59pyx21O11R" title="Tutorial Pemasangan Paks SKIP = BANED" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+
+            // Gunakan format embed resmi https://www.youtube.com/embed/VIDEO_ID (bukan link https://youtu.be/ yang diblokir iframe)
+            videoContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/9ZSS9KQTR7s?autoplay=1&rel=0&enablejsapi=1" title="Tutorial Pemasangan Paks SKIP = BANED" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
             videoContainer.style.cursor = 'default';
+
+            // Deteksi jika dibuka langsung melalui file komputer (file://)
+            if (window.location.protocol === 'file:') {
+                const helperBar = document.getElementById('videoHelperBar');
+                const helperText = document.getElementById('videoHelperText');
+                if (helperBar) helperBar.classList.add('highlight-offline');
+                if (helperText) {
+                    helperText.innerHTML = '<span style="color: #fca5a5;"><i class="fas fa-exclamation-triangle"></i> Mode Offline (file://): Jika browser memblokir embed YouTube, klik tombol <strong>Buka di YouTube</strong> di samping.</span>';
+                }
+            }
         }
         if (videoContainer) {
             videoContainer.addEventListener('click', playVideo);
